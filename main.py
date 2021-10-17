@@ -6,22 +6,24 @@ from facebook_scraper import get_posts
 #print(locale.getlocale())
 
 #Hebrew languge
-allDataHebrew = ""
-for post in get_posts('algoritmim', pages=100):
-    allDataHebrew += (post['text'] + '\n')
-print(allDataHebrew)
+allDataHebrew = open("allDataHebrew.txt","w", encoding='utf-8')
+posts = get_posts('kan.news', pages=10, options={"reactors": True})
+for post in posts:
+    print(post)
+    allDataHebrew.writelines(post['text'])
+allDataHebrew.close()
 
 #Enlish languge
-allDataEnglish = ""
-for post in get_posts('beaverconfessions', pages=100):
-    allDataEnglish += (post['text'] + '\n')
-print(allDataEnglish)
+allDataEnglish = open("allDataEnglish.txt","w", encoding='utf-8')
+for post in get_posts('beaverconfessions', pages=10):
+    allDataEnglish.writelines(post['text'] + '\n')
+allDataEnglish.close()
 
 #Arabic languge
-allDataArabic = ""
-for post in get_posts('ArabsForZehut', pages=100):
-    allDataArabic += (post['text'] + '\n')
-print(allDataArabic)
+allDataArabic = open("allDataArabic.txt","w", encoding='utf-8')
+for post in get_posts('ArabsForZehut', pages=10):
+    allDataArabic.writelines(post['text'] + '\n')
+allDataArabic.close()
 
 
 
